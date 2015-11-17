@@ -44,16 +44,25 @@ app.get("/",function(req,res){
 // detail page
 
 app.get("/movie/:id",function(req,res){
-	res.render("detail",{title:"mooc 详情页",movie:{
-		doctor:"帕蒂鸭梨",
-		country:"美国",
-		title:"机械战警",
-		year:"2014",
-		langaue:"en",
-		poster:"http://r3.ykimg.com/05160000530EEB63675839160D0B79D5",
-		flash:"http://player.youku.com/player.php/sid/XNjA1Njc0NTUy/v.swf",
-		summary:"啦啦啦啦啦啦啦啦啦啦啦啦啦啦",
-	}});
+	var id = req.params.id;
+	Movie.findById(id,function(err,movie){
+		res.render("detail",{
+			title: "mooc" + movie.title,
+			movie: movie
+		});
+	});
+
+app.post();
+	// res.render("detail",{title:"mooc 详情页",movie:{
+	// 	doctor:"帕蒂鸭梨",
+	// 	country:"美国",
+	// 	title:"机械战警",
+	// 	year:"2014",
+	// 	langaue:"en",
+	// 	poster:"http://r3.ykimg.com/05160000530EEB63675839160D0B79D5",
+	// 	flash:"http://player.youku.com/player.php/sid/XNjA1Njc0NTUy/v.swf",
+	// 	summary:"啦啦啦啦啦啦啦啦啦啦啦啦啦啦",
+	// }});
 });
 
 // admin page
